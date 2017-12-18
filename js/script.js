@@ -7,6 +7,14 @@
 
 var options = ['rock','scissors','paper'];
 
+const tie = (whatever, other) => whatever === other;
+
+const wins = {
+ rock : (other) => (other === scissors),
+ paper : (other) => (other === rock),
+ scissors : (other) => (other === paper)
+};
+
 // DOCUMENT READY FUNCTION BELOW
 
 
@@ -27,6 +35,14 @@ $('document').ready(function() {
         var rand = Math.floor(Math.random() * (3));
         var computer = options[rand];
         $('#computer').html(computer);
+      
+      if ( tie(user, computer) ) {
+         $('#results').html('tie');
+        } else {  
+         const winner = wins[user] (computer) ? user : computer;
+          $('#results').html(winner); 
+        }
+      
         
         
     });
